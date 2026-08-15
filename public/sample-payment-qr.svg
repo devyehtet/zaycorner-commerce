@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 210 210" role="img" aria-labelledby="title desc">
+  <title id="title">Sample payment QR</title>
+  <desc id="desc">A deliberately non-functional placeholder QR graphic marked sample.</desc>
+  <rect width="210" height="210" rx="12" fill="#fffdf7"/>
+  <g fill="#142f2c">
+    <path d="M16 16h58v58H16zm10 10v38h38V26zm10 10h18v18H36zM136 16h58v58h-58zm10 10v38h38V26zm10 10h18v18h-18zM16 136h58v58H16zm10 10v38h38v-38zm10 10h18v18H36z"/>
+    <path d="M88 16h12v12H88zm20 0h12v24h-12zM84 42h14v14H84zm22 14h14v14h-14zM82 76h16v14H82zm26 0h12v26h-12zM16 88h14v14H16zm22 0h26v12H38zm-4 20h14v12H34zm24 0h16v14H58zm-42 14h12v14H16zm70-20h14v14H86zm20 10h14v12h-14zm16-32h14v28h-14zm18 2h14v14h-14zm22 0h12v26h-12zm20 4h12v12h-12zm-46 24h18v14h-18zm28 0h12v12h-12zm18 0h18v14h-18zm-58 26h14v14h-14zm22-2h14v28h-14zm20 4h18v12h-18zm28-2h12v14h-12zm18 0h16v26h-16zm-68 30h14v14h-14zm20 6h14v22h-14zm20-12h14v14h-14zm20 12h14v22h-14zm20-8h18v14h-18zm-48 30h14v10h-14zm28-12h12v12h-12zm20 10h30v12h-30z"/>
+  </g>
+  <g transform="rotate(-7 105 105)">
+    <rect x="45" y="87" width="120" height="36" rx="7" fill="#ff6548" stroke="#142f2c" stroke-width="4"/>
+    <text x="105" y="112" fill="white" font-family="Arial, sans-serif" font-size="23" font-weight="800" text-anchor="middle" letter-spacing="2">SAMPLE</text>
+  </g>
+</svg>

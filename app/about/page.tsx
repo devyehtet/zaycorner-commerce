@@ -1,0 +1,7 @@
+import Link from "next/link";
+import { StoreFooter, StoreHeader } from "../../components/StoreChrome";
+
+export default function AboutPage(){return <main><StoreHeader active="about"/>
+  <section className="page-hero about-page-hero"><small>OUR STORY</small><h1>Less scrolling.<br/><em>More loving.</em></h1><p>Zay Corner is a joyful edit of useful, beautiful everyday goods for shoppers in Myanmar and Thailand.</p></section>
+  <section className="about-grid"><div className="about-photo"/><div className="about-copy"><small>WHY ZAY CORNER?</small><h2>Picked with care,<br/>packed with joy.</h2><p>We search for products that earn their place in your day—good materials, fair prices and just enough personality to make ordinary moments feel better.</p><div className="values page-values"><div><b>01</b><span><strong>Thoughtfully picked</strong><small>Every product is selected for usefulness and character.</small></span></div><div><b>02</b><span><strong>Built for two markets</strong><small>Simple delivery and payment choices for Myanmar and Thailand.</small></span></div><div><b>03</b><span><strong>Human support</strong><small>Questions and orders are handled with real care.</small></span></div></div><Link className="primary-button" href="/shop">Explore the shop <span>→</span></Link></div></section>
+  <section className="promise-strip"><div><b>7 days</b><span>Easy returns</span></div><div><b>2 countries</b><span>Myanmar + Thailand</span></div><div><b>100%</b><span>Curated with care</span></div></section><StoreFooter/></main>}
