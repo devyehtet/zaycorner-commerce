@@ -1,6 +1,5 @@
 {
   "buildCommand": "npm run build",
   "outputDirectory": ".vinext",
-  "framework": "nextjs",
-  "nodejs": "22.x"
+  "framework": "nextjs"
 }
