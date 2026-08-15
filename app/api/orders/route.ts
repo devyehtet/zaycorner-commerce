@@ -1,9 +1,12 @@
 import { desc } from "drizzle-orm";
 import { ensureOrdersTable, getDb, getStoreEnv } from "../../../db";
 import { orders } from "../../../db/schema";
+import { products } from "../../../data/products";
 import { getChatGPTUser } from "../../chatgpt-auth";
 
-const catalog:Record<number,{name:string;price:number}>={1:{name:"Cloud Comfort Headphones",price:89000},2:{name:"Everyday Canvas Tote",price:32000},3:{name:"Studio Ceramic Mug",price:26000},4:{name:"Metro Day Backpack",price:76000},5:{name:"Fresh Loop Bottle",price:28000},6:{name:"Weekend Sneakers",price:98000},7:{name:"Glow Desk Lamp",price:54000},8:{name:"Pocket Film Camera",price:148000}};
+const catalog = Object.fromEntries(
+  products.map((product) => [product.id, { name: product.name, price: product.price }]),
+) as Record<number, { name: string; price: number }>;
 
 function isLocalDevRequest(request: Request): boolean {
   const host = request.headers.get("host") ?? request.headers.get("x-forwarded-host") ?? "";

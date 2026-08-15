@@ -3,20 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useMemo, useState, type FormEvent } from "react";
-
-type Product = { id:number; name:string; category:string; price:number; oldPrice?:number; rating:number; reviews:number; emoji:string; color:string; badge?:string; description:string };
-const products:Product[] = [
-  {id:1,name:"Cloud Comfort Headphones",category:"Tech",price:89000,oldPrice:109000,rating:4.9,reviews:128,emoji:"🎧",color:"lemon",badge:"BEST SELLER",description:"All-day comfort, warm sound and 32-hour battery life."},
-  {id:2,name:"Everyday Canvas Tote",category:"Style",price:32000,rating:4.8,reviews:84,emoji:"👜",color:"coral",badge:"NEW",description:"A sturdy carry-all with two pockets and joyful colour."},
-  {id:3,name:"Studio Ceramic Mug",category:"Home",price:26000,oldPrice:31000,rating:4.7,reviews:63,emoji:"☕",color:"mint",description:"Hand-finished stoneware for slow, sunny mornings."},
-  {id:4,name:"Metro Day Backpack",category:"Style",price:76000,rating:4.9,reviews:97,emoji:"🎒",color:"blue",badge:"HOT",description:"Lightweight, water-resistant and ready for every commute."},
-  {id:5,name:"Fresh Loop Bottle",category:"Wellness",price:28000,rating:4.6,reviews:52,emoji:"🧴",color:"peach",description:"Double-wall insulation keeps drinks cool for 18 hours."},
-  {id:6,name:"Weekend Sneakers",category:"Style",price:98000,oldPrice:120000,rating:4.8,reviews:116,emoji:"👟",color:"lilac",badge:"−18%",description:"Cushioned everyday sneakers made for long city walks."},
-  {id:7,name:"Glow Desk Lamp",category:"Home",price:54000,rating:4.7,reviews:41,emoji:"💡",color:"lemon",description:"Three warm light modes with a clean, compact silhouette."},
-  {id:8,name:"Pocket Film Camera",category:"Tech",price:148000,rating:4.9,reviews:72,emoji:"📷",color:"coral",badge:"LIMITED",description:"A playful point-and-shoot for beautifully imperfect moments."},
-];
-const categories = [{name:"All",icon:"✦",color:"coral"},{name:"Tech",icon:"⌁",color:"blue"},{name:"Style",icon:"✺",color:"lemon"},{name:"Home",icon:"⌂",color:"mint"},{name:"Wellness",icon:"☻",color:"lilac"}];
-const money=(v:number)=>`${new Intl.NumberFormat("en-US").format(v)} Ks`;
+import { categories, money, products, type Product } from "../data/products";
 
 export default function Home(){
   const [activeCategory,setActiveCategory]=useState("All"),[query,setQuery]=useState(""),[sort,setSort]=useState("featured");
