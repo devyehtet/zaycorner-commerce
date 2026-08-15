@@ -14,6 +14,12 @@ export type StoreEnv = { DB?: D1DatabaseLike | null; TELEGRAM_BOT_TOKEN?: string
 
 const localOrderStore: Record<string, any>[] = [];
 
+export function getLocalOrders() {
+  return [...localOrderStore].sort(
+    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime(),
+  );
+}
+
 export function getStoreEnv(): StoreEnv {
   const runtime = (globalThis as unknown as { __ZAY_STORE_ENV__?: StoreEnv }).__ZAY_STORE_ENV__;
   if (runtime) return runtime;
@@ -125,13 +131,14 @@ export function getDb() {
                       return Promise.resolve(rows.sort(sorter).slice(0, limitValue));
                     },
                   };
-                }
+                },
               };
             },
             orderBy(sorter: (a: Record<string, any>, b: Record<string, any>) => number) {
               return {
                 limit(limitValue: number) {
-                  return Promise.resolve([...localOrderStore].sort(sorter).slice(0, limitValue));
+                  const rows = [...localOrderStore].sort(sorter);
+                  return Promise.resolve(rows.slice(0, limitValue));
                 },
               };
             },

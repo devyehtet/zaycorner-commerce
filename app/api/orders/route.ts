@@ -1,5 +1,5 @@
 import { desc } from "drizzle-orm";
-import { ensureOrdersTable, getDb, getStoreEnv } from "../../../db";
+import { ensureOrdersTable, getDb, getLocalOrders, getStoreEnv } from "../../../db";
 import { orders } from "../../../db/schema";
 import { products } from "../../../data/products";
 import { getChatGPTUser } from "../../chatgpt-auth";
@@ -18,6 +18,11 @@ export async function GET(request: Request){
   if (!isLocalDevRequest(request) && (!user || user.email.toLowerCase() !== (bindings.ADMIN_EMAIL || "info@yehtet.com").toLowerCase())) {
     return Response.json({error:"Unauthorized"},{status:401});
   }
+
+  if (!process.env.POSTGRES_URL && !bindings.DB) {
+    return Response.json({ orders: getLocalOrders() });
+  }
+
   await ensureOrdersTable();
   return Response.json({orders:await getDb().select().from(orders).orderBy(desc(orders.createdAt)).limit(100)});
 }
