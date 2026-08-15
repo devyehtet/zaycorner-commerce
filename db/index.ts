@@ -32,10 +32,15 @@ export function getStoreEnv(): StoreEnv {
   };
 }
 
+function getPostgresUrl() {
+  return process.env.POSTGRES_URL || process.env.DATABASE_URL || null;
+}
+
 export async function ensureOrdersTable() {
   const env = getStoreEnv();
+  const postgresUrl = getPostgresUrl();
 
-  if (process.env.POSTGRES_URL) {
+  if (postgresUrl) {
     try {
       await sql`
         CREATE TABLE IF NOT EXISTS orders (
@@ -107,7 +112,7 @@ export async function ensureOrdersTable() {
 }
 
 export function getDb() {
-  if (process.env.POSTGRES_URL) {
+  if (getPostgresUrl()) {
     return drizzle(sql, { schema });
   }
 

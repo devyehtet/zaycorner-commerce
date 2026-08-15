@@ -1,6 +1,7 @@
-import { getDb, ensureOrdersTable } from "../../../../db";
+import { getDb, ensureOrdersTable, getStoreEnv } from "../../../../db";
 import { orders } from "../../../../db/schema";
 import { eq } from "drizzle-orm";
+import { getChatGPTUser } from "../../../chatgpt-auth";
 
 export async function PATCH(
   request: Request,
@@ -8,6 +9,14 @@ export async function PATCH(
 ) {
   try {
     const { id: orderId } = await context.params;
+    const user = await getChatGPTUser();
+    const bindings = getStoreEnv();
+    const adminEmail = (bindings.ADMIN_EMAIL || "info@yehtet.com").toLowerCase();
+
+    if (!user || user.email.toLowerCase() !== adminEmail) {
+      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
     const body = await request.json();
     const { status, paymentStatus } = body;
 

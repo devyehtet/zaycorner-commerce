@@ -15,7 +15,9 @@ function isLocalDevRequest(request: Request): boolean {
 
 export async function GET(request: Request){
   const user=await getChatGPTUser(),bindings=getStoreEnv();
-  if (!isLocalDevRequest(request) && (!user || user.email.toLowerCase() !== (bindings.ADMIN_EMAIL || "info@yehtet.com").toLowerCase())) {
+  const adminEmail=(bindings.ADMIN_EMAIL || "info@yehtet.com").toLowerCase();
+
+  if (!isLocalDevRequest(request) && (!user || user.email.toLowerCase() !== adminEmail)) {
     return Response.json({error:"Unauthorized"},{status:401});
   }
 
