@@ -28,11 +28,13 @@ export async function POST(request: Request) {
       .where(conditions.length > 1 ? or(...conditions) : conditions[0])
       .orderBy(desc(orders.createdAt));
 
+    const ordersPayload: Array<Record<string, unknown>> = userOrders.map((order: typeof orders.$inferSelect) => ({
+      ...order,
+      items: JSON.parse(order.itemsJson as string),
+    }));
+
     return Response.json({
-      orders: userOrders.map(order => ({
-        ...order,
-        items: JSON.parse(order.itemsJson)
-      }))
+      orders: ordersPayload,
     });
   } catch (error) {
     console.error("Order lookup error:", error);

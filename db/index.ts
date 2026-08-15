@@ -1,7 +1,14 @@
 import { drizzle } from "drizzle-orm/d1";
 import * as schema from "./schema";
 
-export type StoreEnv = { DB?: D1Database | null; TELEGRAM_BOT_TOKEN?: string; TELEGRAM_CHAT_ID?: string; ADMIN_EMAIL?: string };
+type D1DatabaseLike = {
+  prepare: (query: string) => {
+    first: () => Promise<unknown>;
+    run: () => Promise<unknown>;
+  };
+};
+
+export type StoreEnv = { DB?: D1DatabaseLike | null; TELEGRAM_BOT_TOKEN?: string; TELEGRAM_CHAT_ID?: string; ADMIN_EMAIL?: string };
 
 const localOrderStore: Record<string, any>[] = [];
 

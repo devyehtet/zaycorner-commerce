@@ -4,10 +4,10 @@ import { eq } from "drizzle-orm";
 
 export async function PATCH(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const orderId = params.id;
+    const { id: orderId } = await context.params;
     const body = await request.json();
     const { status, paymentStatus } = body;
 
