@@ -1,5 +1,5 @@
 {
   "buildCommand": "npm run build",
-  "outputDirectory": ".vinext",
-  "framework": "nextjs"
+  "outputDirectory": "dist",
+  "framework": null
 }
